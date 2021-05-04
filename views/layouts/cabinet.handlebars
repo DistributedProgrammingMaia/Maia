@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cabinet</title>
+    <link rel="icon" href="img/cabinet/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="css/style-cabinet.css">
+</head>
+<body>
+<div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+
+        <div class="pcoded-main-container">
+            <div class="pcoded-wrapper">
+
+{{> cabinetPartials/_cabinetNavigation}}
+
+                <div class="pcoded-content">
+                    <div class="pcoded-inner-content">
+                        <!-- Main-body start -->
+                        <div class="main-body">
+                            <div class="page-wrapper">
+                                <!-- Page-header start -->
+
+                                <!-- Page-header end -->
+
+                                <!-- Page-body start -->
+                                <div class="page-body">
+                                    <!-- Basic table card end -->
+                                    <!-- Inverse table card start -->
+
+                                    {{{body}}}
+
+                                </div>
+                                <!-- Page-body end -->
+                            </div>
+                        </div>
+                        <!-- Main-body end -->
+
+                    </div>
+                </div>
+
+
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/popper.js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
+<!-- jquery slimscroll js -->
+<script type="text/javascript" src="js/jquery-slimscroll/jquery.slimscroll.js"></script>
+<!-- modernizr js -->
+<script type="text/javascript" src="js/modernizr/modernizr.js"></script>
+<!-- am chart -->
+<script src="js/pages/widget/amchart/amcharts.min.js"></script>
+<script src="js/pages/widget/amchart/serial.min.js"></script>
+<!-- Todo js -->
+<script type="text/javascript " src="js/pages/todo/todo.js "></script>
+<!-- Custom js -->
+<script type="text/javascript" src="js/pages/dashboard/custom-dashboard.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript " src="js/SmoothScroll.js"></script>
+<script src="js/pcoded.min.js"></script>
+<script src="js/demo-12.js"></script>
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+    var $window = $(window);
+    var nav = $('.fixed-button');
+    $window.scroll(function(){
+        if ($window.scrollTop() >= 200) {
+            nav.addClass('active');
+        }
+        else {
+            nav.removeClass('active');
+        }
+    });
+</script>
+</body>
+</html>
