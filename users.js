@@ -17,7 +17,15 @@ app.get('/api/patient', (req, res) => {
     res.send(patientsList);
 });
 
+//GET REQUESTS
 
 
+app.get('/api/patient/:id', function (req, res) {
+    // First read existing users.
+    // res.send(req.params.id);
+    const patient = patientsList.find(c => c.id === parseInt(req.params.id));
+    if (!patient) return res.status(404).send('the course not found');
+    res.send(patient);
+})
 var port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}....`));
