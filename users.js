@@ -55,5 +55,39 @@ app.post('/api/patient', (req, res) => {
     patientsList.push(patient);
     res.send(patientsList);
 });
+
+//HTTP PUT
+
+app.put('/api/patient/:id', (req, res) => {
+    //look up 
+    //if not existing return 404
+    const patient = patientsList.find(c => c.id === parseInt(req.params.id));
+    if (!patient) {
+        return res.status(404).send('the patient was  not found');
+    }
+    //validate
+    //if invalidad return 400
+
+    //const result = validateCourse(req.body);
+    const { error } = validateUser(req.body) // ==result.error
+    if (error) {
+        //400 bad request
+        res.status(400).send(error.details[0].message);
+        return;
+    }
+
+    //update course
+    patient.firstName = req.body.firstName;
+    res.send(patient);
+});
+
+function validateUser(course) {
+    const schema = {
+        firstName: Joi.string().min(3).required(),
+        lastName: Joi.string().min(3).required()
+    };
+    return Joi.validate(course, schema);
+}
+
 var port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}....`));
