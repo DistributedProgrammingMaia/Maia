@@ -81,6 +81,24 @@ app.put('/api/patient/:id', (req, res) => {
     res.send(patient);
 });
 
+//http delete
+
+app.delete('/api/patient/:id', (req, res) => {
+    //look up course
+    //if dosent exist, return 404
+    const patient = patientsList.find(c => c.id === parseInt(req.params.id));
+    if (!patient) {
+        return res.status(404).send('the patient was  not found');
+    }
+    //delete
+
+    const index = patientsList.indexOf(course);
+    patientsList.splice(index, 1);
+
+    res.send(patient);
+});
+
+
 function validateUser(course) {
     const schema = {
         firstName: Joi.string().min(3).required(),
