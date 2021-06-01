@@ -99,19 +99,19 @@ app.delete('/api/patient/:id', (req, res) => {
     }
     //delete
 
-    const index = patientsList.indexOf(course);
+    const index = patientsList.indexOf(patient);
     patientsList.splice(index, 1);
 
     res.send(patient);
 });
 
 
-function validateUser(course) {
+function validateUser(patient) {
     const schema = {
         firstName: Joi.string().min(3).required(),
         lastName: Joi.string().min(3).required()
     };
-    return Joi.validate(course, schema);
+    return Joi.validate(patient, schema);
 }
 
 var port = process.env.PORT || 3000;
