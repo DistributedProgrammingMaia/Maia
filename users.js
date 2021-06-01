@@ -78,6 +78,13 @@ app.put('/api/patient/:id', (req, res) => {
 
     //update course
     patient.firstName = req.body.firstName;
+    patient.lastName = req.body.lastName;
+    patient.birthDay = req.body.birthDay;
+    patient.email = req.body.email;
+    patient.gender = req.body.gender;
+    patient.diagnosis = req.body.diagnosis;
+    patient.type = req.body.type;
+    patient.fileName = req.body.fileName;
     res.send(patient);
 });
 
@@ -109,3 +116,63 @@ function validateUser(course) {
 
 var port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}....`));
+
+
+
+
+//DATABASE MANAGEMENT
+
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/playground')
+    .then(() => console.log('connected to mongodb...'))
+    .catch(err => console.error('could not connect', err));
+
+
+
+//creating schema
+
+const userSchema = new mongoose.Schema({
+
+    firstName: String,
+    lastName: String,
+    birthDay: { type: Date, default: Date.now },
+    gender: String,
+    fileName: String,
+    diagnosis: String,
+    email: String,
+    type: String
+
+});
+
+async function createUser() {
+    const User = mongoose.model('User', userSchema);
+    const user = new User({
+        firstName: 'Second User',
+        lastName: 'User',
+        gender: 'Female',
+        fileName: 'www.google.com',
+        diagnosis: 'healthy',
+        email: 'test@test.com',
+        type: 'Doctor'
+    });
+
+    //saving to database
+
+    const result = await user.save();
+    console.log(result)
+}
+
+async function getUsers() {
+    const User = mongoose.model('User', userSchema);
+    const users = await User.find();
+    console.log(users);
+    return users;
+
+}
+
+
+
+
+//createUser();
+
